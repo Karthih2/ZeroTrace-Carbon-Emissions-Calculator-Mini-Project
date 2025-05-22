@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carbon Footprint Calculator</title>
+  <style>
+    *{
+        font-family: 'Times New Roman', Times, serif;
+    }
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      background: url("../static/images/calbg2.jpg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      margin: 10px;
+      padding: 15px;
+      color: #ffffff;
+    }
+
+    header {
+      color: white;
+      font-size: xxx-large;
+      font-weight: bold;
+      text-align: center;
+      padding: 10px;
+    }
+
+    p {
+      text-align: center;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 40px auto;
+      background: rgba(255, 255, 255, 0.11);
+      padding: 20px 30px 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(2.1px);
+      -webkit-backdrop-filter: blur(2.1px);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #2EB62C;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    label {
+        font-size: large;
+      display: block;
+      margin: 12px 0 6px 0;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      /* padding: 5px 10px; */
+      margin-bottom: 12px;
+      border-radius: 4px;
+      border: 1px solid #ABE098;
+      font-size: 1.2rem;
+      color: #2B4F21;
+      background: #F7F9F3;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    select:focus {
+      border-color: #57C84D;
+      outline: none;
+      background: #e6f0d9;
+    }
+
+    input[type="radio"] {
+      margin-right: 6px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 18px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: linear-gradient(to bottom, #83D475, #57C84D);
+      color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    button:disabled {
+      background: #a0a0a0;
+      cursor: default;
+      box-shadow: none;
+    }
+
+    button:hover:not(:disabled) {
+      background: linear-gradient(to bottom, #9de188, #2EB62C);
+      box-shadow: 0 6px 10px rgba(46, 182, 44, 0.6);
+    }
+
+    nav {
+      max-width: 480px;
+      margin: 10px auto 0 auto;
+      display: flex;
+      justify-content: space-around;
+      background: white;
+      border-radius: 8px;
+      padding: 8px 0;
+    }
+
+    nav button {
+      background: transparent;
+      color: #2B4F21;
+      border: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      padding: 6px 12px;
+      border-bottom: 3px solid transparent;
+      transition: border-color 0.3s ease, color 0.3s ease;
+    }
+
+    nav button.active {
+      border-bottom-color: #2EB62C;
+      color: #2EB62C;
+    }
+
+    /* Removed hover effect */
+    nav button:hover {
+      color: #2B4F21;
+      border-bottom-color: transparent;
+    }
+
+    footer {
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* padding: 10px 0; */
+  /* background: rgba(255, 255, 255, 0.2);  */
+  /* backdrop-filter: blur(12px); */
+  /* -webkit-backdrop-filter: blur(12px); */
+  /* border-top: 1px solid rgba(255, 255, 255, 0.4);  */
+  /* box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); */
+  font-size: 1.2em;
+  color: rgb(0, 0, 0);
+  z-index: 999;
+}
+  </style>
+</head>
+<body>
+  <header>Carbon Footprint Calculator</header>
+  <p>Calculate your carbon footprint and take steps to reduce it!</p>
+
+  <nav>
+    <button data-section="0" class="active">Personal</button>
+    <button data-section="1">Electricity</button>
+    <button data-section="2">Transport</button>
+    <button data-section="3">Waste</button>
+    <button data-section="4">Water</button>
+  </nav>
+  <form action="/calculator" method="POST">
+  <div class="container">
+    <!-- Section 0 -->
+    <div class="section active" id="section-0">
+      <h2>Personal Info</h2>
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required />
+    </div>
+
+
+    <!-- Section 1 -->
+    <div class="section" id="section-1">
+      <h2>Electricity Consumption</h2>
+      <label for="electricity">Daily Electricity Usage (kWh)</label>
+      <input type="number" id="electricity" name="electricity" placeholder="e.g., 5" min="0" step="any" required />
+      <small>Emission factor used: 0.475 kg CO₂/kWh (global average)</small>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section" id="section-2">
+      <h2>Transportation</h2>
+      <label for="fuelType">Vehicle Fuel Type</label>
+      <select id="fuelType" name="fuelType" required>
+        <option value="" disabled selected>Select fuel type</option>
+        <option value="petrol">Petrol</option>
+        <option value="diesel">Diesel</option>
+        <option value="electric">Electric Vehicle (EV)</option>
+        <option value="cng">CNG</option>
+        <option value="lpg">LPG</option>
+      </select>
+      <label for="fuelAmount">Daily Fuel Used (liters or kg for CNG)</label>
+      <input type="number" id="fuelAmount" name="fuelAmount" placeholder="e.g., 3" min="0" step="any" required />
+      <hr />
+      <label for="publicTransport">Public Transport Distance (km/day)</label>
+      <input type="number" id="publicTransport" name="publicTransport" placeholder="e.g., 10" min="0" step="any" />
+      <label for="flightDistance">Annual Air Travel Distance (km)</label>
+      <input type="number" id="flightDistance" name="flightDistance" placeholder="e.g., 2000" min="0" step="any" />
+      <label>Flight Type</label>
+      <label><input type="radio" name="flightType" value="short" /> Short-haul (&lt;1500 km)</label>
+      <label><input type="radio" name="flightType" value="long" /> Long-haul (&gt;1500 km)</label>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="section" id="section-3">
+      <h2>Waste</h2>
+      <label for="wasteAmount">Daily Waste Generated (kg)</label>
+      <input type="number" id="wasteAmount" name="wasteAmount" placeholder="e.g., 1.5" min="0" step="any" required />
+      <small>Emission factor used: 0.9 kg CO₂e/kg</small>
+    </div>
+
+  <!-- Section 4 -->
+<div class="section" id="section-4">
+  <h2>Water Usage</h2>
+  <label for="waterUsage">Daily Water Consumption (cubic meters)</label>
+  <input type="number" id="waterUsage" name="waterUsage" placeholder="e.g., 0.2" min="0" step="any" required />
+  <small>Emission factor used: 0.7 kg CO₂/m³</small>
+  
+  <div style="text-align:center; margin-top:20px;">
+    <button type="submit">Calculate</button>
+  </div>
+</div>
+
+
+<div class="section {% if total_emissions is not none %}active{% endif %}" id="result">
+    <h2>Total Daily Carbon Emissions</h2>
+    {% if total_emissions is not none %}
+      <p><strong>Name:</strong> {{ name }}</p>
+      <p><strong>Total Daily Carbon Emissions:</strong> {{ total_emissions }} kg CO₂</p>
+    {% endif %}
+  </div>
+  
+
+<div class="nav-buttons">
+  <button id="prevBtn" disabled>Previous</button>
+  <!-- Disabled Next button -->
+  <button id="nextBtn">Next</button>
+</div>
+
+  
+  </div>
+</form>
+
+<footer>
+    &copy; 2024 Archive of Silent Dreams. All rights reserved.
+</footer>
+
+
+  <script>
+    const navButtons = document.querySelectorAll('nav button');
+    const sections = document.querySelectorAll('.section');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let currentSection = 0;
+    const maxSection = sections.length - 1;
+
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        navButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentSection = parseInt(btn.getAttribute('data-section'));
+        showSection(currentSection);
+      });
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentSection > 0) {
+        currentSection--;
+        showSection(currentSection);
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentSection < maxSection) {
+        currentSection++;
+        showSection(currentSection);
+      }
+    });
+
+    function showSection(index) {
+      sections.forEach(s => s.classList.remove('active'));
+      sections[index].classList.add('active');
+      navButtons.forEach(b => b.classList.remove('active'));
+      navButtons[index].classList.add('active');
+      updateNavButtons();
+    }
+
+    function updateNavButtons() {
+      prevBtn.disabled = currentSection === 0;
+      nextBtn.disabled = currentSection === maxSection-1;
+    }
+
+    updateNavButtons();
+  </script>
+</body>
+</html>

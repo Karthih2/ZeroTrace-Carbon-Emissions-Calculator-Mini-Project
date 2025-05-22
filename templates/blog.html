@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carbon Emission Blog</title>
+  <style>
+    body {
+      background:
+        linear-gradient(
+          rgba(46, 182, 44, 0.4),
+          rgba(46, 182, 44, 0.4)
+        ),
+        url("../static/images/blogbg1.jpg");
+        background-attachment: fixed;
+        background-size: cover;
+      background-position: center;
+      font-family: 'Times New Roman', Times, serif;
+      color: #2b2b2b;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  max-width: 90%;
+  z-index: 20;
+  color: #000000;
+  padding: 25px 20px;
+  text-align: center;
+  font-size: 2.8em;
+  font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+nav {
+  position: fixed;
+  top: 90px; /* height of header approx + some gap */
+  left: 50%;
+
+  transform: translateX(-50%);
+  width: 900px;
+  max-width: 90%;
+  z-index: 15;
+  padding: 15px 0;
+  box-shadow: 0 5px 15px rgba(46, 182, 44, 0.4);
+  border-radius: 0 0 12px 12px;
+  margin-bottom: 0; /* remove bottom margin to avoid extra space */
+  background-color: rgba(46, 182, 44, 0.2); /* translucent green bg to keep consistency */
+}
+
+/* Add padding-top to main content to prevent overlap */
+.main-content {
+  padding-top: 180px; /* header (approx 90px) + nav (approx 70-80px) + spacing */
+  max-width: 900px;
+  width: 90%;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 30px; /* optional, can reduce */
+  margin-bottom: 70px; /* space for footer */
+  box-sizing: border-box;
+}
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin: 0 20px;
+    }
+
+    nav ul li a {
+      color: #000000; /* lighter natural greenish */
+      font-weight: 600;
+      font-size: 1.2em;
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.3s ease;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    nav ul li a:hover {
+      color: #d0e8d0;
+      transform: scale(1.1);
+    }
+
+    /* Section Styling */
+    .intro-section, .features-section, .importance-section, .blog-section {
+      background-color: rgba(237, 250, 237, 0.9); /* very light green-white */
+      padding: 30px 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 15px rgba(46, 182, 44, 0.2);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      margin-bottom: 35px;
+      color: #2b2b2b;
+    }
+
+    .intro-section:hover,
+    .features-section:hover,
+    .importance-section:hover,
+    .blog-section:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 25px rgba(46, 182, 44, 0.35);
+    }
+
+    .section-title {
+      color: #2eb62c; /* Wageningen green */
+      font-size: 2.8em;
+      font-weight: 700;
+      margin-bottom: 20px;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    .section-content {
+      font-size: 1.15em;
+      line-height: 1.75;
+      color: #3a3a3a;
+      text-align: justify;
+      font-weight: 400;
+    }
+
+    .highlight {
+      background-color: #a6d785; /* soft green highlight */
+      color: #1a3e0c;
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .post {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(46, 182, 44, 0.15);
+      margin-bottom: 40px;
+      color: #2b2b2b;
+    }
+
+    .post h3 {
+      color: #2eb62c;
+      font-size: 2.2em;
+      font-weight: 700;
+      margin-bottom: 15px;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    .post ul {
+      margin-left: 20px;
+      list-style-type: disc;
+      line-height: 1.8;
+    }
+
+    /* Footer Styling */
+   footer {
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+   -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.4); 
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  font-size: 1.2em;
+  color: rgb(0, 0, 0);
+  z-index: 999;
+}
+
+    /* Responsive Design for Mobile */
+    @media screen and (max-width: 768px) {
+      nav ul li {
+        display: block;
+        margin: 10px 0;
+      }
+
+      footer {
+        font-size: 0.9em;
+        border-radius: 0;
+        max-width: 100%;
+        left: 0;
+        transform: none;
+      }
+
+      header, nav {
+        max-width: 100%;
+        border-radius: 0;
+      }
+
+      .main-content {
+        width: 95%;
+        padding: 20px 15px;
+      }
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+
+<header>Carbon Emission Blog</header>
+
+<nav>
+  <ul>
+    <li><a href="#intro">Introduction</a></li>
+    <li><a href="#importance">Importance</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#blog">Blog</a></li>
+  </ul>
+</nav>
+
+<div class="main-content">
+  <!-- Introduction Section -->
+  <section class="intro-section" id="intro">
+    <h2 class="section-title">Welcome to the Carbon Emission Dashboard Blog</h2>
+    <p class="section-content">
+      Our world is facing increasing environmental challenges, and tracking carbon emissions is a vital step in mitigating climate change. The <strong>Carbon Emission Dashboard</strong> provides an intuitive and user-friendly tool that helps individuals and organizations monitor and reduce their carbon footprint. In this blog, we will explore why tracking carbon emissions is important, and how our dashboard can help.
+    </p>
+  </section>
+
+  <!-- Importance of Carbon Emissions -->
+  <section class="importance-section" id="importance">
+    <h2 class="section-title">Why Tracking Carbon Emissions Matters</h2>
+    <p class="section-content">
+      The carbon footprint of individuals, businesses, and even nations is a key metric that can drive sustainability efforts. <span class="highlight">Carbon emissions</span> from electricity, transportation, industry, and waste are a major contributor to global warming. Reducing these emissions is essential to limit climate change and achieve environmental goals.
+    </p>
+    <p class="section-content">
+      By measuring carbon emissions, we can:
+      <ul>
+        <li>Understand the sources of emissions and their impact on the environment.</li>
+        <li>Make informed decisions to reduce our carbon footprint.</li>
+        <li>Track progress towards sustainability goals.</li>
+        <li>Contribute to global efforts to combat climate change.</li>
+      </ul>
+    </p>
+  </section>
+
+  <!-- Key Features of the Dashboard -->
+  <section class="features-section" id="features">
+    <h2 class="section-title">Features of the Carbon Emission Dashboard</h2>
+    <p class="section-content">
+      Our Carbon Emission Dashboard comes packed with powerful features designed to help you take control of your environmental impact:
+      <ul>
+        <li><strong>Carbon Footprint Calculator:</strong> Calculate your carbon emissions from various sources like electricity, diesel, gas, and wastewater.</li>
+        <li><strong>Historical Comparison:</strong> Track and compare your emissions over time to see how much progress you're making.</li>
+        <li><strong>Top 3 Emissions:</strong> View which sources contribute most to your carbon footprint, so you can focus on the biggest areas for improvement.</li>
+        <li><strong>Global Comparison:</strong> Compare your emissions with global sustainability standards and find out how you stack up.</li>
+        <li><strong>Interactive Graphs:</strong> Visualize world carbon data with easy-to-read charts and graphs.</li>
+      </ul>
+    </p>
+  </section>
+
+  <!-- Blog Section -->
+  <section class="blog-section" id="blog">
+    <h2 class="section-title">Latest Posts</h2>
+
+    <div class="post">
+      <h3>Reducing Your Carbon Footprint</h3>
+      <p>In today's world, reducing our carbon footprint is one of the most important actions we can take to combat climate change. Small lifestyle changes, such as using energy-efficient appliances, adopting sustainable transportation methods, and reducing waste, can significantly reduce the amount of carbon dioxide we release into the atmosphere.</p>
+      <p>Here are a few simple steps to get started:</p>
+      <ul>
+        <li>Switch to renewable energy sources like solar or wind power.</li>
+        <li>Drive less or switch to electric vehicles.</li>
+        <li>Install energy-efficient lighting and appliances in your home.</li>
+        <li>Recycle and reduce waste to minimize landfill emissions.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<footer>&copy; 2024 Archive of Silent Dreams. All Rights Reserved.</footer>
+
+</body>
+</html>

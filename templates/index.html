@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZeroTrace: Track Your Carbon Footprint</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Nunito:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    *{
+      /* margin: 0; */
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body{
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../static/images/homebg4.jpg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      font-family: 'Times New Roman', Times, serif;
+      margin: 10px;
+      padding: 15px;
+    }
+    header{
+      color: white;
+      font-size: xx-large;
+      font-weight: bold;
+      text-align: center;
+      padding: 10px;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 15px 0;
+      
+    }
+    nav ul {
+      list-style-type: none;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+    
+    nav ul li a {
+      border: 1px solid white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.2em;
+      color: darkseagreen;
+      transition: color 0.3s ease, transform 0.3s ease, text-decoration 0.3s ease;
+      margin-top: 15px;
+    }
+
+    nav ul li a:hover {
+      color: seagreen;
+      transform: scale(1.1);
+      text-decoration: underline;
+    }
+
+    nav ul li a:active {
+      color: seagreen;
+      text-decoration: underline;
+    }
+
+    .flash-messages {
+      margin: 0;
+      /* background-color: lightyellow; */
+      margin-top: 10px;
+      color: white;
+      border: 1px solid rgb(255, 255, 255);
+      backdrop-filter: blur(12px); 
+     -webkit-backdrop-filter: blur(12px);
+      padding: 10px;
+      text-align: center;
+      margin-bottom: 50px;
+      border-radius: 5px;
+      font-size: 1.2em;
+
+    }
+    .main-content {
+      color: black;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.11);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(2.1px);
+      -webkit-backdrop-filter: blur(2.1px);
+      border: 1px solid rgba(255, 255, 255, 0.99);
+    } 
+    .about-box {
+      flex: 1;
+      font-size: 1.1em;
+      padding: 30px;
+      width: 65%;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      margin-right: 20px;
+    }
+    .about-box h2 {
+      color: black;
+      font-size: 1.5em;
+      margin-bottom: 15px;
+      margin-bottom: 15px;
+
+    }
+    .about-box p {
+      color: black ;
+      font-size: 1.2em;
+      line-height: 1.5;
+    }
+    .about-box a {
+      color: darkseagreen;
+      text-decoration: none;
+      font-weight: bold;
+    } 
+    .about-box a:hover {
+      color: seagreen;
+      text-decoration: underline;
+    } 
+    aside {
+      flex: 0 0 200px;
+      padding: 20px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+    }   
+    aside form {
+      display: flex;
+      flex-direction: column;
+
+    }
+    aside button {
+      background-color: darkseagreen;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin-bottom: 10px;
+      font-size: 1.2em;
+      cursor: pointer;
+      border-radius: 5px;
+      width: 250px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    aside button:hover {
+      background-color: seagreen;
+      transform: scale(1.05);
+    }
+    aside button:active {
+      background-color: seagreen;
+      transform: scale(0.95);
+    }
+
+  footer {
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* padding: 10px 0; */
+  /* background: rgba(255, 255, 255, 0.2);  */
+  /* backdrop-filter: blur(12px); */
+  /* -webkit-backdrop-filter: blur(12px); */
+  /* border-top: 1px solid rgba(255, 255, 255, 0.4);  */
+  /* box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); */
+  font-size: 1.2em;
+  color: rgb(0, 0, 0);
+  z-index: 999;
+}
+
+
+
+
+footer a {
+  color: darkseagreen;
+  text-decoration: none;
+}
+
+footer a:hover,
+footer a:active {
+  color: seagreen;
+  text-decoration: underline;
+}
+
+
+    @media (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+      }
+      .about-box {
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
+      aside {
+        flex: 1;
+      }
+    }
+    @media (max-width: 480px) {
+      header {
+        font-size: x-large;
+      }
+      nav ul li a {
+        font-size: 1em;
+      }
+      .about-box h2 {
+        font-size: 1.2em;
+      }
+      .about-box p {
+        font-size: 1em;
+      }
+      aside button {
+        font-size: 1em;
+      }
+    }
+
+  </style>
+</head>
+<body>
+    <header>ZeroTrace</header>
+    
+    <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+    
+    <div class="flash-messages">
+      <p>Welcome to ZeroTrace: Track Your Carbon Footprint! Start tracking your emissions.</p>
+    </div>
+    
+    <div class="main-content">
+      <div class="about-box">
+        <h2>About This Dashboard</h2>
+        <p>
+          Welcome to the Carbon Emission Dashboard. This tool is designed to help you track and analyze your carbon emissions. 
+          You can calculate your carbon footprint from various sources, including electricity, diesel, wastewater, and gas. 
+          The dashboard allows you to compare your emissions over time and see your progress towards sustainability goals. 
+          Use the tools to explore your data, identify opportunities for improvement, and minimize your environmental impact.
+          <a href="/about">Learn More</a>
+        </p>
+      </div>
+    
+      <aside>
+        <form action="/" method="POST">
+          <button name="selection" value="calculator" type="submit">Calculator</button>
+          <button name="selection" value="view_all_calculations" type="submit">View All Calculations</button>
+          <button name="selection" value="top_3_emissions" type="submit">Top 3 Emissions</button>
+          <button name="selection" value="graph_emissions" type="submit">Graph of Emissions</button>
+        </form>
+      </aside>
+    </div>
+    
+    <footer>
+      &copy; 2024 Archive of Silent Dreams. All rights reserved.
+    </footer>
+    
+    </body>
+</html>

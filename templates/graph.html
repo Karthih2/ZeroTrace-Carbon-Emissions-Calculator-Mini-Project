@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Graph</title>
+    <style>
+        /* Basic reset for body and HTML */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f9fb;
+            color:white;
+            background-image: url("{{ url_for('static', filename='images/graphbg.jpeg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Centering content on the page */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Heading Style */
+        h1 {
+            position: r;
+            font-size: 2.8em;
+            font-weight: bold;
+            color: #38b6ff;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+        
+        /* Dropdown form styling */
+        .dropdown-form {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 8px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-right: 10px;
+            color: #fff;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            background-color: #38b6ff;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: auto;
+        }
+
+        select:hover {
+            background-color: #3191c7; /* Darker shade of blue on hover */
+        }
+
+        select:focus {
+            outline: none;
+            border: 2px solid #3191c7;
+        }
+
+        /* Graph styling for centering directly */
+        iframe {
+            width: 90%;
+            max-width: 1000px;
+            height: 500px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out; /* Smooth transition for the shadow */
+        }
+
+        /* Hover effect for the graph */
+        iframe:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Darker and more intense shadow on hover */
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            iframe {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Interactive Carbon Emissions Graph</h1>
+        <form class="dropdown-form" method="GET" action="{{ url_for('graph_emissions') }}">
+            <label for="chart">Select Graph Type:</label>
+            <select name="chart" id="chart" onchange="this.form.submit()">
+                <option value="line" {% if request.args.get('chart') == 'line' %}selected{% endif %}>Line Chart</option>
+                <option value="bar" {% if request.args.get('chart') == 'bar' %}selected{% endif %}>Bar Chart</option>
+                <option value="pie" {% if request.args.get('chart') == 'pie' %}selected{% endif %}>Pie Chart</option>
+                <option value="scatter" {% if request.args.get('chart') == 'scatter' %}selected{% endif %}>Scatter Plot</option>
+                <option value="area" {% if request.args.get('chart') == 'area' %}selected{% endif %}>Area Chart</option>
+            </select>
+        </form>
+        <div>
+            {{ graph | safe }} <!-- Assuming 'graph' is a pre-generated graph content -->
+        </div>
+    </div>
+
+</body>
+</html>
