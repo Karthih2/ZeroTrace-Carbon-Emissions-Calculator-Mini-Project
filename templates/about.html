@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About | ZeroTrace: Track Your Carbon Footprint</title>
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      font-family: 'times new roman', Times, serif;
+      background: linear-gradient(135deg, #2EB62C, #C5E8B7);
+      background-image: url("../static/images/about.avif");
+      background-attachment: fixed;
+      color: #000000;
+    }
+
+    /* Header Styling */
+    header {
+      text-align: center;
+      padding: 30px 20px;
+      /* background-color: #2EB62C; */
+      color: rgb(255, 255, 255);
+      font-size: 2.5em;
+      font-weight: bold;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Main Content Styling */
+    section {
+      padding: 30px 20px;
+      max-width: 900px;
+      margin: 40px auto;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #2EB62C;
+      font-size: 2em;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #2EB62C;
+      padding-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.1em;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    /* Lists Styling */
+    .features, .technologies {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px 0;
+    }
+
+    .features li, .technologies li {
+      background-color: #E3F8DC;
+      margin-bottom: 12px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .features li:hover, .technologies li:hover {
+      background-color: #C5E8B7;
+      transform: translateY(-3px);
+    }
+
+    /* Footer Styling */
+    footer {
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+   -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.4); 
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  font-size: 1.2em;
+  color: rgb(0, 0, 0);
+  z-index: 999;
+}
+
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        font-size: 2em;
+        padding: 25px 15px;
+      }
+
+      section {
+        padding: 20px 15px;
+      }
+
+      h2 {
+        font-size: 1.7em;
+      }
+
+      .features li, .technologies li {
+        font-size: 1em;
+      }
+    }
+
+    
+  </style>
+</head>
+<body>
+
+<header>
+  About ZeroTrace: Track Your Carbon Footprint
+</header>
+
+<section>
+  <h2>Project Overview</h2>
+  <p>The Carbon Emission Dashboard helps individuals and organizations calculate, track, and reduce their carbon footprint. By entering daily consumption data, users can calculate emissions from electricity, petrol, diesel, wastewater, and natural gas. This helps raise awareness about the environmental impact of everyday activities and encourages sustainable living.</p>
+
+  <h2>Features</h2>
+  <ul class="features">
+    <li>Carbon Emission Calculators for various sources</li>
+    <li>Comparison of calculated emissions with global sustainability standards</li>
+    <li>Graphical representation of historical emissions data</li>
+  </ul>
+
+  <h2>Technologies Used</h2>
+  <ul class="technologies">
+    <li>Backend: Python, Flask</li>
+    <li>Database: MySQL</li>
+    <li>Frontend: HTML, CSS, JavaScript</li>
+    <li>Visualization: Plotly</li>
+  </ul>
+
+  <h2>Our Vision</h2>
+  <p>Our goal is to provide individuals and organizations with the tools and knowledge to better understand and reduce their carbon emissions, contributing to a healthier planet.</p>
+
+  <h2>How to Use the Dashboard</h2>
+  <p>1. Input your daily consumption data in the calculator.</p>
+  <p>2. View your total carbon emissions and compare them with global standards.</p>
+  <p>3. Check out historical emissions trends through interactive graphs.</p>
+
+  <h2>Credits</h2>
+  <p>This project was developed by <strong>Karthick S</strong> at <strong>Silent Dreams</strong>. Special thanks to the Plotly team for their charting library.</p>
+</section>
+
+<footer>
+  &copy; 2024 Archive of Silent Dreams | All Rights Reserved
+</footer>
+
+</body>
+</html>
